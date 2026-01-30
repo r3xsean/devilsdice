@@ -72,3 +72,4 @@ export default defineConfig([
 ])
 ```
 # Trigger
+# trigger
