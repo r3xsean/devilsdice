@@ -1,0 +1,3 @@
+# Netlify SPA redirect rule
+# All requests should be redirected to index.html for client-side routing
+/*    /index.html   200

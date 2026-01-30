@@ -1,0 +1,15 @@
+{
+  "name": "devilsdice",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Real-time online multiplayer dice game for 2-6 players",
+  "scripts": {
+    "dev": "pnpm --parallel --filter './apps/*' dev",
+    "build": "pnpm --filter @devilsdice/shared build && pnpm --filter './apps/*' build",
+    "lint": "pnpm --filter './apps/*' lint",
+    "test": "pnpm --filter './apps/*' test"
+  },
+  "keywords": ["dice", "multiplayer", "game", "websocket"],
+  "author": "",
+  "license": "MIT"
+}

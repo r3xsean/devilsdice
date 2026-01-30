@@ -1,0 +1,374 @@
+@import "tailwindcss";
+
+/* ============================================
+   DEVIL'S DICE - NOIR CASINO DESIGN SYSTEM
+   ============================================ */
+
+/* Typography - Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* === COLOR PALETTE === */
+  /* Noir Blacks */
+  --color-void: #050505;
+  --color-obsidian: #0a0a0a;
+  --color-charcoal: #141414;
+  --color-smoke: #1a1a1a;
+  --color-ash: #262626;
+  --color-slate: #3a3a3a;
+
+  /* Devil's Crimson */
+  --color-blood: #7f1d1d;
+  --color-crimson: #991b1b;
+  --color-ruby: #b91c1c;
+  --color-scarlet: #dc2626;
+  --color-ember: #ef4444;
+  --color-flame: #f87171;
+
+  /* Casino Gold */
+  --color-bronze: #92400e;
+  --color-amber: #b45309;
+  --color-gold: #d97706;
+  --color-honey: #f59e0b;
+  --color-champagne: #fbbf24;
+  --color-gilt: #fcd34d;
+
+  /* Mystical Blue (for hidden die) */
+  --color-abyss: #1e1b4b;
+  --color-indigo: #312e81;
+  --color-sapphire: #3730a3;
+  --color-azure: #4338ca;
+
+  /* Neutral Tones */
+  --color-ivory: #f5f5f4;
+  --color-pearl: #e7e5e4;
+  --color-silver: #a8a29e;
+  --color-pewter: #78716c;
+
+  /* === TYPOGRAPHY === */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* === EFFECTS === */
+  --glow-crimson: 0 0 20px rgba(185, 28, 28, 0.4), 0 0 40px rgba(185, 28, 28, 0.2);
+  --glow-gold: 0 0 20px rgba(217, 119, 6, 0.4), 0 0 40px rgba(217, 119, 6, 0.2);
+  --glow-ember: 0 0 30px rgba(239, 68, 68, 0.3);
+
+  /* Shadows */
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  --shadow-die: 0 4px 8px rgba(0, 0, 0, 0.4), 0 8px 16px rgba(0, 0, 0, 0.3);
+  --shadow-elevated: 0 8px 32px rgba(0, 0, 0, 0.6), 0 0 1px rgba(255, 255, 255, 0.1) inset;
+
+  /* Noise texture */
+  --noise-url: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+
+  /* Base settings */
+  font-family: var(--font-body);
+  line-height: 1.6;
+  font-weight: 400;
+  color: var(--color-ivory);
+  background-color: var(--color-void);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* === BASE STYLES === */
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 0%, var(--color-blood) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 40% at 100% 100%, var(--color-abyss) 0%, transparent 40%),
+    var(--color-void);
+  position: relative;
+}
+
+/* Subtle noise overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: var(--noise-url);
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+#root {
+  min-height: 100vh;
+  position: relative;
+}
+
+/* === TYPOGRAPHY UTILITIES === */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Display headings */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* === CUSTOM COMPONENT STYLES === */
+
+/* Card surfaces */
+.card-noir {
+  background: linear-gradient(
+    145deg,
+    rgba(26, 26, 26, 0.9) 0%,
+    rgba(20, 20, 20, 0.95) 100%
+  );
+  border: 1px solid rgba(185, 28, 28, 0.2);
+  border-radius: 1rem;
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(12px);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-noir::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(185, 28, 28, 0.1) 0%,
+    transparent 50%
+  );
+  pointer-events: none;
+}
+
+/* Gold accent card */
+.card-gold {
+  background: linear-gradient(
+    145deg,
+    rgba(26, 26, 26, 0.9) 0%,
+    rgba(20, 20, 20, 0.95) 100%
+  );
+  border: 1px solid rgba(217, 119, 6, 0.3);
+  border-radius: 1rem;
+  box-shadow: var(--shadow-card);
+}
+
+/* Buttons */
+.btn-crimson {
+  background: linear-gradient(135deg, var(--color-ruby) 0%, var(--color-blood) 100%);
+  color: var(--color-ivory);
+  border: 1px solid var(--color-scarlet);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(185, 28, 28, 0.3);
+}
+
+.btn-crimson:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--color-scarlet) 0%, var(--color-ruby) 100%);
+  box-shadow: var(--glow-crimson);
+  transform: translateY(-1px);
+}
+
+.btn-crimson:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-crimson:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-amber) 100%);
+  color: var(--color-void);
+  border: 1px solid var(--color-honey);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
+}
+
+.btn-gold:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--color-honey) 0%, var(--color-gold) 100%);
+  box-shadow: var(--glow-gold);
+  transform: translateY(-1px);
+}
+
+/* Ghost button */
+.btn-ghost {
+  background: transparent;
+  color: var(--color-silver);
+  border: 1px solid var(--color-slate);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-body);
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-ghost:hover {
+  color: var(--color-ivory);
+  border-color: var(--color-pewter);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* === DICE STYLES === */
+.die-white {
+  background: linear-gradient(145deg, #faf7f5 0%, #e8e4e1 100%);
+  border: 2px solid #d6d3d1;
+  box-shadow:
+    var(--shadow-die),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.1),
+    inset 0 2px 4px rgba(255, 255, 255, 0.8);
+}
+
+.die-red {
+  background: linear-gradient(145deg, var(--color-ruby) 0%, var(--color-blood) 100%);
+  border: 2px solid var(--color-scarlet);
+  box-shadow:
+    var(--shadow-die),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+.die-blue {
+  background: linear-gradient(145deg, var(--color-sapphire) 0%, var(--color-abyss) 100%);
+  border: 2px solid var(--color-azure);
+  box-shadow:
+    var(--shadow-die),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+.die-selected {
+  box-shadow:
+    0 0 0 3px var(--color-gold),
+    var(--glow-gold),
+    var(--shadow-die);
+}
+
+.die-pip-dark {
+  background: radial-gradient(circle, #1a1a1a 0%, #0a0a0a 100%);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.die-pip-light {
+  background: radial-gradient(circle, #ffffff 0%, #f5f5f5 100%);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* === INPUT STYLES === */
+.input-noir {
+  background: var(--color-charcoal);
+  border: 1px solid var(--color-slate);
+  border-radius: 0.75rem;
+  padding: 0.875rem 1rem;
+  color: var(--color-ivory);
+  font-family: var(--font-body);
+  transition: all 0.2s ease;
+}
+
+.input-noir::placeholder {
+  color: var(--color-pewter);
+}
+
+.input-noir:focus {
+  outline: none;
+  border-color: var(--color-ruby);
+  box-shadow: 0 0 0 3px rgba(185, 28, 28, 0.2);
+}
+
+/* Room code input - monospace */
+.input-code {
+  font-family: var(--font-mono);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* === SCROLLBAR === */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-obsidian);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-slate);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-pewter);
+}
+
+/* === ANIMATIONS === */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(185, 28, 28, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(185, 28, 28, 0.6);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* === SELECTION COLORS === */
+::selection {
+  background: var(--color-ruby);
+  color: var(--color-ivory);
+}
+
+/* === FOCUS RING === */
+*:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
