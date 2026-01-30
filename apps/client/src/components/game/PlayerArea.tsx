@@ -166,9 +166,12 @@ export function PlayerArea({
               </span>
             </span>
           )}
-          <span className="text-yellow-400 font-mono font-bold text-sm">
-            {player.cumulativeScore.toFixed(1)}
-          </span>
+          <div className="text-right">
+            <span className="text-yellow-400 font-mono font-bold text-sm">
+              {(player.set1Score + player.set2Score).toFixed(1)}
+            </span>
+            <span className="text-gray-500 text-xs block">round</span>
+          </div>
         </div>
       </div>
 
