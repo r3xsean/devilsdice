@@ -2,6 +2,10 @@
   "name": "devilsdice",
   "version": "1.0.0",
   "private": true,
+  "packageManager": "pnpm@10.28.2",
+  "engines": {
+    "node": ">=20"
+  },
   "description": "Real-time online multiplayer dice game for 2-6 players",
   "scripts": {
     "dev": "pnpm --parallel --filter './apps/*' dev",
