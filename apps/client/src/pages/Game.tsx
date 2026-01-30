@@ -33,7 +33,6 @@ export default function Game() {
     setHasSubmittedPrediction,
     setHasConfirmedSelection,
     setMyPrediction,
-    setShowResultsModal,
     setHasAcknowledgedResults,
     setError,
   } = useGameStore();

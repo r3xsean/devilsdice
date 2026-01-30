@@ -189,7 +189,7 @@ export function ResultsModal({
   type,
   results,
   predictions = [],
-  roundResult,
+  roundResult: _roundResult,
   finalStandings = [],
   currentRound,
   playerNames,
@@ -216,7 +216,7 @@ export function ResultsModal({
   const sortedStandings = [...finalStandings].sort((a, b) => a.placement - b.placement);
 
   // Determine what we're revealing based on type
-  const itemsToReveal = type === 'game' ? sortedStandings.length : results.length;
+  const _itemsToReveal = type === 'game' ? sortedStandings.length : results.length;
 
   // Animate reveal of results one by one with dramatic stagger
   useEffect(() => {
@@ -487,7 +487,7 @@ export function ResultsModal({
           {/* Final Standings - only show for 'game' type */}
           {showFinalStandings && (
             <AnimatePresence mode="popLayout">
-              {sortedStandings.slice(0, revealedCount).map((standing, idx) => {
+              {sortedStandings.slice(0, revealedCount).map((standing, _idx) => {
                 const revealDelay = 0.1;
                 const isWinner = standing.placement === 1;
 
