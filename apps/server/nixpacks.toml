@@ -1,0 +1,11 @@
+[phases.setup]
+nixPkgs = ["nodejs_20", "pnpm"]
+
+[phases.install]
+cmds = ["cd ../.. && pnpm install"]
+
+[phases.build]
+cmds = ["cd ../.. && pnpm --filter @devilsdice/shared build && pnpm --filter @devilsdice/server build"]
+
+[start]
+cmd = "node dist/main.js"
