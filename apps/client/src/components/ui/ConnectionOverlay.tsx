@@ -10,13 +10,26 @@ export function ConnectionOverlay({ forceShow = false }: ConnectionOverlayProps)
   const connectionStatus = useGameStore((state) => state.connectionStatus);
   const [showOverlay, setShowOverlay] = useState(false);
   const [reconnectAttempt, setReconnectAttempt] = useState(0);
+  const [hasEverConnected, setHasEverConnected] = useState(false);
 
-  // Only show overlay for disconnected/reconnecting states
-  // Add a small delay before showing to avoid flicker on quick reconnects
+  // Track if user has ever been connected (for SEO: don't show overlay on initial load)
+  useEffect(() => {
+    if (connectionStatus === 'connected') {
+      setHasEverConnected(true);
+    }
+  }, [connectionStatus]);
+
+  // Only show overlay for disconnected/reconnecting states AFTER user has connected once
+  // This prevents showing "Connection Lost" to search engine crawlers on initial page load
   useEffect(() => {
     let timeout: ReturnType<typeof setTimeout>;
 
-    if (connectionStatus === 'disconnected' || connectionStatus === 'reconnecting' || forceShow) {
+    const shouldShow = forceShow || (
+      hasEverConnected &&
+      (connectionStatus === 'disconnected' || connectionStatus === 'reconnecting')
+    );
+
+    if (shouldShow) {
       timeout = setTimeout(() => {
         setShowOverlay(true);
       }, 500); // 500ms delay before showing
@@ -26,7 +39,7 @@ export function ConnectionOverlay({ forceShow = false }: ConnectionOverlayProps)
     }
 
     return () => clearTimeout(timeout);
-  }, [connectionStatus, forceShow]);
+  }, [connectionStatus, forceShow, hasEverConnected]);
 
   // Increment reconnect attempt counter during reconnection
   useEffect(() => {
