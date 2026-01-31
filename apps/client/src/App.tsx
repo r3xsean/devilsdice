@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import { socketService } from '@/services/socket';
 import { useGameStore } from '@/stores/gameStore';
@@ -13,6 +13,7 @@ import { GamePhase as GamePhaseEnum } from '@devilsdice/shared';
 // Socket event handler component
 function SocketHandler() {
   const navigate = useNavigate();
+  const hasEverConnected = useRef(false);
   const {
     setConnectionStatus,
     setPlayerId,
@@ -51,6 +52,7 @@ function SocketHandler() {
 
     // Connection events
     socket.on('connect', () => {
+      hasEverConnected.current = true;
       setConnectionStatus('connected');
       setIsLoading(false);
     });
@@ -61,9 +63,13 @@ function SocketHandler() {
 
     socket.on('connect_error', () => {
       setConnectionStatus('disconnected');
-      setError('Failed to connect to server');
       setIsLoading(false);
-      toast.error('Failed to connect to server. Please check your connection.');
+      // Only show error toast/message after user has connected once (for SEO)
+      // This prevents showing errors to search engine crawlers on initial page load
+      if (hasEverConnected.current) {
+        setError('Failed to connect to server');
+        toast.error('Failed to connect to server. Please check your connection.');
+      }
     });
 
     // Room events
