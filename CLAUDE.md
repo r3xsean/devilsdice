@@ -93,3 +93,25 @@ React 19 + Vite + Tailwind CSS frontend:
 - Colors: `--color-ruby`, `--color-gold`, `--color-void` (see CSS for full palette)
 - Fonts: Playfair Display (display), DM Sans (body), JetBrains Mono (monospace)
 - Component classes: `.card-noir`, `.btn-crimson`, `.btn-gold`, `.input-noir`, `.die-white`, `.die-red`, `.die-blue`
+
+## Deployment (Railway)
+
+Hosted on Railway with two services using Nixpacks builder:
+
+### Client Service
+- **URL**: https://triple-dice-production.up.railway.app
+- **Root Directory**: /
+- **Build Command**: `pnpm install && pnpm --filter @devilsdice/shared build && pnpm --filter @devilsdice/client build`
+- **Start Command**: `npx serve apps/client/dist -s -l 3000`
+- **Static file config**: `apps/client/public/serve.json` controls SPA rewrites (allows sitemap.xml, robots.txt to be served directly)
+
+### Server Service
+- **URL**: https://devilsdiceserver-production.up.railway.app
+- **Root Directory**: /
+- **Build Command**: `pnpm install && pnpm --filter @devilsdice/shared build && pnpm --filter @devilsdice/server build`
+- **Start Command**: `node apps/server/dist/main.js`
+
+### SEO Files
+- `apps/client/public/sitemap.xml` - Sitemap for Google Search Console
+- `apps/client/index.html` - Contains meta tags for SEO and Google verification
+- User-facing branding is "Triple Dice" (internal package scope remains `@devilsdice`)
