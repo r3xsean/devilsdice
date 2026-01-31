@@ -98,7 +98,7 @@ export default function Home() {
             transition={{ delay: 0.4, duration: 0.5 }}
             className="text-5xl md:text-6xl font-display font-bold text-[var(--color-ivory)] mb-3 tracking-tight"
           >
-            Devil's
+            Triple
             <span className="block text-[var(--color-scarlet)]">Dice</span>
           </motion.h1>
 
@@ -108,7 +108,7 @@ export default function Home() {
             transition={{ delay: 0.6 }}
             className="text-[var(--color-silver)] font-body text-lg"
           >
-            Roll the dice. Test your fate.
+            The dice game from Devil's Plan
           </motion.p>
         </div>
 
@@ -220,7 +220,7 @@ export default function Home() {
             2-6 players • Strategic dice selection • Hidden information
           </p>
           <p className="text-[var(--color-slate)]/60 text-xs mt-2">
-            Inspired by Devil's Plan Season 2
+            From Netflix's Devil's Plan: Death Room
           </p>
         </motion.div>
       </motion.div>
