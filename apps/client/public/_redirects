@@ -1,3 +1,6 @@
 # Netlify SPA redirect rule
-# All requests should be redirected to index.html for client-side routing
+# Allow Google verification file to be served directly
+/google00df768626880f74.html    /google00df768626880f74.html    200
+
+# All other requests should be redirected to index.html for client-side routing
 /*    /index.html   200
