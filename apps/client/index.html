@@ -70,7 +70,17 @@
     </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Pre-render content for SEO (replaced by React) -->
+      <div style="background:#1a1a2e;color:#fafaf9;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:system-ui,sans-serif;text-align:center;padding:2rem;">
+        <h1 style="font-size:3rem;margin:0;">Triple <span style="color:#dc2626;">Dice</span></h1>
+        <p style="color:#a1a1aa;margin:1rem 0;">The dice game from Devil's Plan</p>
+        <p style="color:#71717a;font-size:0.875rem;">Play Triple Dice online - the strategic dice game from Netflix's Devil's Plan: Death Room (Season 2). Roll dice, make predictions, and outsmart your opponents. Free multiplayer for 2-6 players.</p>
+        <noscript>
+          <p style="margin-top:2rem;color:#dc2626;">JavaScript is required to play Triple Dice.</p>
+        </noscript>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
