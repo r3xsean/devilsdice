@@ -2,6 +2,10 @@
 
 A real-time multiplayer dice game for 2-6 players featuring strategic dice selection, hidden information, and prediction bonuses. Players roll dice, select their best hand of 3, and compete across multiple rounds with a "Noir Casino" themed interface.
 
+## Site
+
+https://triple-dice-production.up.railway.app/
+
 ## Features
 
 - Real-time multiplayer with WebSocket communication
